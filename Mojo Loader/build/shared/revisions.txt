@@ -1,1 +1,1 @@
-This is the first version!
+This version changes the way that the Mojo is brought into loading mode. With the new firmware, the Mojo will almost never go into loading mode by accident.

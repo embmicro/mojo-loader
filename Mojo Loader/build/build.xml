@@ -117,6 +117,7 @@
     
     <copy todir="work/${target.os}">
       <fileset file="shared/revisions.txt" />
+      <fileset file="shared/icon.png" />
     </copy>
 
     <copy todir="work/${target.os}/lib" flatten="true">
@@ -131,7 +132,11 @@
       <fileset file="lib/${target.os}/swt.jar" />
     </copy>
 
-    <copy todir="work/${target.os}" file="linux/launcher/mojo-loader" />
+    <copy todir="work/${target.os}">
+          <fileset dir="linux" includes="driver/**" />
+    </copy>
+
+    <copy todir="work/${target.os}" file="linux/mojo-loader" />
     <chmod perm="755" file="work/${target.os}/mojo-loader" />
 
   </target>
@@ -199,6 +204,7 @@
     
     <copy todir="work/windows">
       <fileset file="shared/revisions.txt" />
+      <fileset file="shared/icon.png" />
     </copy>
     
     <copy todir="work/windows">
@@ -210,7 +216,7 @@
     </copy>
   	
   	<copy todir="work/windows">
-  	      <fileset dir="windows" includes="MojoDriver.inf" />
+  	      <fileset dir="windows" includes="driver/**" />
   	</copy>
 
    <!-- <antcall target="assemble">

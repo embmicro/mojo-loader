@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow implements Callback {
-	private static final String VERSION = "1.1.2";
+	private static final String VERSION = "1.2.0";
 	private static final String PORT_PREF = "PORT";
 	
 	protected final Display display = Display.getDefault();
@@ -45,7 +45,7 @@ public class MainWindow implements Callback {
 	 * @wbp.parser.entryPoint
 	 */
 	public static void main(String[] args) {
-		/*
+		
 		boolean term = false;
 		String port = null;
 		String binFile = null;
@@ -76,14 +76,14 @@ public class MainWindow implements Callback {
 			
 			MojoLoader loader = new MojoLoader(null, null, null, true);
 			loader.sendBin(port, binFile, flash, verify);
-		} else { */
+		} else { 
 			try {
 				MainWindow window = new MainWindow();
 				window.open();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		//}
+		}
 		return;
 	}
 
