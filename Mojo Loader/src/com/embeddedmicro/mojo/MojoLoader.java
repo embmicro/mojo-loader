@@ -256,7 +256,7 @@ public class MojoLoader {
 						}
 					}
 
-					if (read(1000) != 'D') {
+					if (read(5000) != 'D') {
 						onError("Mojo did not acknowledge the transfer!");
 						bin.close();
 						return;
@@ -313,7 +313,7 @@ public class MojoLoader {
 
 					if (flash) {
 						out.write('L');
-						if (read(3000) != 'D') {
+						if (read(5000) != 'D') {
 							onError("Could not load from flash!");
 							bin.close();
 							return;
