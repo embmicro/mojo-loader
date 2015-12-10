@@ -205,6 +205,7 @@
     <copy todir="work/windows">
       <fileset file="shared/revisions.txt" />
       <fileset file="shared/icon.png" />
+      <fileset file="shared/icon.ico" />
     </copy>
     
     <copy todir="work/windows">
@@ -214,10 +215,19 @@
     <copy todir="work/windows">
       <fileset dir="windows" includes="java/**" />
     </copy>
+
+    <copy todir="work/windows/java/bin">
+      <fileset file="lib/windows32/rxtxSerial.dll" />
+    </copy>
   	
   	<copy todir="work/windows">
   	      <fileset dir="windows" includes="driver/**" />
   	</copy>
+
+    <copy todir="work/windows">
+          <fileset dir="windows" includes="dpinst*" />
+    </copy>
+
 
    <!-- <antcall target="assemble">
       <param name="target.path" value="windows/work" />

@@ -2,7 +2,7 @@
 
 [Strings]
 DriverPackageDisplayName="Mojo USB Driver"
-ManufacturerName="Embedded Micro (www.embeddedmicro.com)"
+ManufacturerName="Embedded Micro (http://embeddedmicro.com)"
 ServiceName="USB RS-232 Emulation Driver"
 mojo3.bootloader.name="Mojo V3 bootloader"
 mojo3.sketch.name="Mojo V3"
@@ -11,7 +11,7 @@ mojo2.sketch.name="Mojo V2"
 
 
 [DefaultInstall]
-CopyINF=arduino.inf
+CopyINF=mojo.inf
 
 [Version]
 Class=Ports
@@ -20,7 +20,7 @@ Signature="$Windows NT$"
 Provider=%ManufacturerName%
 DriverPackageDisplayName=%DriverPackageDisplayName%
 CatalogFile=mojo.cat
-DriverVer=01/04/2013,1.0.0.0
+DriverVer=08/25/2014,1.0.0.1
 
 [Manufacturer]
 %ManufacturerName%=DeviceList, NTamd64, NTia64

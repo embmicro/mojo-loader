@@ -17,6 +17,8 @@ import java.util.concurrent.TimeoutException;
 import org.eclipse.swt.widgets.Display;
 
 public class MojoLoader {
+	private static final int TIMEOUT = 10000;
+	
 	private Display display;
 	private TextProgressBar bar;
 	private InputStream in;
@@ -133,7 +135,7 @@ public class MojoLoader {
 
 					out.write('E'); // Erase flash
 
-					if (read(1000) != 'D') {
+					if (read(TIMEOUT) != 'D') {
 						onError("Mojo did not acknowledge flash erase!");
 						return;
 					}
@@ -211,7 +213,7 @@ public class MojoLoader {
 						out.write('R'); // Write to FPGA
 					}
 
-					if (read(1000) != 'R') {
+					if (read(TIMEOUT) != 'R') {
 						onError("Mojo did not respond! Make sure the port is correct.");
 						bin.close();
 						return;
@@ -227,7 +229,7 @@ public class MojoLoader {
 
 					out.write(buff);
 
-					if (read(1000) != 'O') {
+					if (read(TIMEOUT) != 'O') {
 						onError("Mojo did not acknowledge transfer size!");
 						bin.close();
 						return;
@@ -256,7 +258,7 @@ public class MojoLoader {
 						}
 					}
 
-					if (read(5000) != 'D') {
+					if (read(TIMEOUT) != 'D') {
 						onError("Mojo did not acknowledge the transfer!");
 						bin.close();
 						return;
@@ -272,7 +274,7 @@ public class MojoLoader {
 						int size = (int) (file.length() + 5);
 
 						int tmp;
-						if ((tmp = read(1000)) != 0xAA) {
+						if ((tmp = read(TIMEOUT)) != 0xAA) {
 							onError("Flash does not contain valid start byte! Got: "
 									+ tmp);
 							bin.close();
@@ -281,7 +283,7 @@ public class MojoLoader {
 
 						int flashSize = 0;
 						for (int i = 0; i < 4; i++) {
-							flashSize |= read(1000) << (i * 8);
+							flashSize |= read(TIMEOUT) << (i * 8);
 						}
 
 						if (flashSize != size) {
@@ -294,7 +296,7 @@ public class MojoLoader {
 						count = 0;
 						oldCount = 0;
 						while ((num = bin.read()) != -1) {
-							int d = read(1000);
+							int d = read(TIMEOUT);
 							if (d != num) {
 								onError("Verification failed at byte " + count
 										+ " out of " + length + "\nExpected "
@@ -313,7 +315,7 @@ public class MojoLoader {
 
 					if (flash) {
 						out.write('L');
-						if (read(5000) != 'D') {
+						if (read(TIMEOUT) != 'D') {
 							onError("Could not load from flash!");
 							bin.close();
 							return;

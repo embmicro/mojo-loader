@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
 public class MainWindow implements Callback {
-	private static final String VERSION = "1.2.1";
+	private static final String VERSION = "1.2.1b";
 	private static final String PORT_PREF = "PORT";
 	
 	protected final Display display = Display.getDefault();
@@ -224,6 +224,7 @@ public class MainWindow implements Callback {
 				1, 1));
 		btnLoad.setText("Load");
 
+		shlMojoLoader.pack();
 	}
 
 	private void setUI(boolean active) {
