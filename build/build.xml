@@ -23,7 +23,7 @@
   <!-- Libraries required for running mojo loader -->
   <fileset dir="." id="runtime.jars">
     <include name="shared/mojo-loader.jar" />
-    <include name="shared/RXTXcomm.jar" />
+    <include name="shared/jssc-2.8.0.jar" />
   </fileset>
 
   <target name="build" description="Build Mojo Loader.">
@@ -125,10 +125,6 @@
     </copy>
 
     <copy todir="work/${target.os}/lib">
-      <fileset file="lib/${target.os}/librxtxSerial.so" />
-    </copy>
-
-    <copy todir="work/${target.os}/lib">
       <fileset file="lib/${target.os}/swt.jar" />
     </copy>
 
@@ -209,15 +205,7 @@
     </copy>
     
     <copy todir="work/windows">
-      <fileset file="lib/windows32/rxtxSerial.dll" />
-    </copy>
-
-    <copy todir="work/windows">
       <fileset dir="windows" includes="java/**" />
-    </copy>
-
-    <copy todir="work/windows/java/bin">
-      <fileset file="lib/windows32/rxtxSerial.dll" />
     </copy>
   	
   	<copy todir="work/windows">

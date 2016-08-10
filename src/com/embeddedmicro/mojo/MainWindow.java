@@ -1,6 +1,5 @@
 package com.embeddedmicro.mojo;
 
-import java.util.ArrayList;
 import java.util.prefs.Preferences;
 
 import org.eclipse.swt.SWT;
@@ -20,8 +19,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.wb.swt.SWTResourceManager;
 
+import jssc.SerialPortList;
+
 public class MainWindow implements Callback {
-	private static final String VERSION = "1.2.1b";
+	private static final String VERSION = "1.3.0";
 	private static final String PORT_PREF = "PORT";
 	
 	protected final Display display = Display.getDefault();
@@ -74,7 +75,18 @@ public class MainWindow implements Callback {
 				return;
 			}
 			
-			MojoLoader loader = new MojoLoader(null, null, null, true);
+			MojoLoader loader = new MojoLoader(null, null, new Callback() {
+				
+				@Override
+				public void onSuccess() {
+					
+				}
+				
+				@Override
+				public void onError(String error) {
+					System.err.println(error);
+				}
+			}, true);
 			loader.sendBin(port, binFile, flash, verify);
 		} else { 
 			try {
@@ -102,13 +114,9 @@ public class MainWindow implements Callback {
 	}
 
 	private void updatePorts(Combo box) {
-		ArrayList<String> ports = MojoLoader.listPorts();
-		if (ports.size() != 0) {
-			Object[] array = ports.toArray();
-			String[] names = new String[array.length];
-			for (int i = 0; i < array.length; i++)
-				names[i] = (String) array[i];
-			box.setItems(names);
+		String[] ports = SerialPortList.getPortNames();
+		if (ports.length != 0) {
+			box.setItems(ports);
 		} else {
 			box.removeAll();
 			box.add("");
